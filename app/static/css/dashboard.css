@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+.b {
+  border: 1px solid red;
+}
+.g-left {
+  margin-right: auto;
+}
+.g-right {
+  margin-left: auto;
+}
+
+body {
+  padding: 0 20px;
+}
+header {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+header img {
+  height: 27px;
+}
+#menu-icon {
+  z-index: 6;
+}
+.side-menu {
+  width: 70%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+  background-color: white;
+  padding: 85px 25px;
+  padding-right: 20px;
+  transform: translateX(110%);
+}
+.side-menu a {
+  text-decoration: none;
+  display: block;
+  color: #0088AC;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+
+
+
+
+
+.section-1 {
+  width: 100%;
+  margin-top: 10px;
+  min-height: calc(100vh - 70px);
+}
+.section-1 h2 {
+  font-family: 'Poppins', sans-serif;
+  color: #0087AB;
+  font-size: 35px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  line-height: 38px;
+}
+.card {
+  width: 100%;
+}
+.card-head {
+  width: 100%;
+  padding: 12px 20px;
+  background: #FCA130;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  font-weight: 400;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  z-index: 3;
+}
+.card-head h3 {
+  text-transform: uppercase;
+}
+.card-body {
+  background: #F9F9F9;
+  padding-top: 0px;
+  border: 1px solid #20B8D6;
+  border-radius: 6px;
+  top: -8px;
+  overflow: hidden;
+  height: 0;
+}
+.card-body .list {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #20B8D6;
+}
+.card-body .list h4 {
+  color: #545454;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+.card-body .list a {
+  text-decoration: none;
+  color: white;
+  font-size: 12px;
+  padding: 7px 25px;
+  background: #20B8D6;
+  font-family: 'Roboto', sans-serif;
+}
+
+footer {
+  width: 100%;
+  display:flex;
+  align-items: center;
+}
+#g2 {
+  left: -22px;
+}

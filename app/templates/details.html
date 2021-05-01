@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/details.css' %}">
+
+<div class="section-1">
+  <h2>{{type}} <br> {{desc}}</h2>
+
+  <span class="total-area-text ">Total Area (in sq. mtr.)</span>
+  <p class="total-area-value">{{total_area}}</p>
+
+</div>
+
+<br><br>
+
+<span class="ava-head">Availability</span>
+<table>
+  <table>
+    <tr>
+      <th>SIZE</th>
+      <th>QUANTITY</th>
+    </tr>
+    {% for i in all_products %}
+    <tr>
+      <td>{{i.size}}</td>
+      <td>{{i.quantity}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</table>
+
+<div class="log-header">
+  <span class="ava-head g-left">Logs</span>
+  <a href="/View-All-Logs/{{type}}/{{desc}}/" class="" id="view-btn">VIEW ALL</a>
+  <a href="/Add-Log/{{type}}/{{desc}}/" class="" id="add-btn"> <img src="{% static 'img/Group 11.png' %}" alt=""> </a>
+</div>
+<table>
+  <table class="log-table">
+    <tr>
+      <th>SIZE</th>
+      <th>INITIAL</th>
+      <th>IN</th>
+      <th>USED</th>
+      <th>LEFT</th>
+      <th>DATE</th>
+    </tr>
+    {% for i in logs %}
+    <tr>
+      <td>{{i.product.size}}</td>
+      <td>{{i.initial_quantity}}</td>
+      <td>{{i.in_quantity}}</td>
+      <td>{{i.used_quantity}}</td>
+      <td>{{i.left_quantity}}</td>
+      <td>{{i.date}}</td>
+    </tr>
+    {% endfor %}
+
+  </table>
+</table>
+
+<br><br><br><br>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    Product details page
+    <br>
+    Total Area = {{total_area}} sq. meter <br>
+    <br><br>
+    {% for i in all_products %}
+      {{i.size}}         {{i.quantity}} <br>
+    {% endfor %}
+
+    <a href="/View-All-Logs/{{type}}/{{desc}}/">View All Log</a> <br>
+    <a href="/Add-Log/{{type}}/{{desc}}/">Add Log</a> <br>
+    {% for i in logs %}
+      {{i}} <br>
+    {% endfor %}
+  </body>
+</html>

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<div class="section-1">
+  <h2>Your <br>Glass Types</h2>
+
+  {% for i in all_glass_type %}
+  <div class="card">
+
+    <div class="card-head" id="card-head-{{forloop.counter}}" data-catid="{{forloop.counter}}">
+      <h3>{{i.name}}</h3>
+      <img src="{% static 'img/arrow-down-sign-to-navigate 1.png' %}" alt="" class="g-right">
+    </div>
+    <div class="card-body" id="card-body-{{forloop.counter}}">
+      {% for j in all_products %}
+        {% if j.0 == i.name %}
+          <div class="list">
+            <h4>{{j.1}}</h4>
+            <a href="/Product-Details/{{i}}/{{j.1}}/" class="g-right">VIEW</a>
+          </div>
+          {% endif %}
+        {% endfor %}
+
+    </div>
+
+  </div>
+  <br>
+  {% endfor %}
+</div>
+
+<br><br>
+
+<script type="text/javascript">
+
+  $(".card-head").click(function(){
+    var catid = $(this).attr("data-catid")
+    var id_head = "card-head-" + catid
+    var id_body = "card-body-" + catid
+    var body_height = document.getElementById(id_body).clientHeight
+    var arrow = $("#"+id_head).find('img')[0]
+    if (body_height == 0) {
+
+      gsap.to("#"+id_body,{
+        height:"auto",
+        padding:"10px 0 0 0",
+      })
+      gsap.to("#"+id_head,{
+        "box-shadow":"0 4px 10px rgba(0,0,0,0.25)",
+      })
+      gsap.to(arrow,{rotate:180})
+
+    } else {
+
+      gsap.to("#"+id_body,{
+        height:"0px",
+        padding:"0",
+      })
+      gsap.to("#"+id_head,{
+        "box-shadow":"none",
+      })
+      gsap.to(arrow,{rotate:0})
+
+    }
+
+  })
+
+</script>
+
+{% endblock %}

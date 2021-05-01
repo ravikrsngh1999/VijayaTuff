@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.0/gsap.min.js"></script>
+  </head>
+  <body>
+
+    <header class="">
+      <a href="/" class="g-left"><img src="{% static 'img/logo (1) 2.png' %}" ></a>
+      <img src="{% static 'img/menu (3) 1.png' %}" alt="" class="g-right" id="menu-icon">
+    </header>
+
+    <div class="side-menu">
+      <a href="/Export-ALL-Logs">EXPORT ALL LOGS</a>
+      <br>
+      <a href="/Export-Stock-List">EXPORT AVAILABILITY CHART</a>
+      <br>
+      <a href="/User-Logout">LOGOUT</a>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+      <img src="{% static 'img/Frame 2.png' %}" alt="" id="g2">
+      <img src="{% static 'img/logo (1) 1.png' %}" alt="" class="g-right">
+    </footer>
+
+
+    <script type="text/javascript">
+      $("#menu-icon").click(function(){
+        if (document.getElementById('menu-icon').src.includes("yellow")) {
+          document.getElementById('menu-icon').src = "/static/img/menu (3) 1.png"
+          gsap.to(".side-menu",{x:"110%"})
+        } else {
+          document.getElementById('menu-icon').src = "/static/img/menu-yellow.png"
+          gsap.to(".side-menu",{x:"0"})
+        }
+
+      })
+    </script>
+
+  </body>
+</html>
