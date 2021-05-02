@@ -233,7 +233,7 @@ def exportstocklist(request):
     if request.user.is_authenticated:
         header = "STOCK_LIST"
         response = HttpResponse(content_type='application/ms-excel')
-        response['Content-Disposition'] = 'attachment; filename="'+header+'.xls"'
+        response['Content-Disposition'] = 'attachment; filename="'+header+'.csv"'
 
         wb = xlwt.Workbook(encoding='utf-8')
         ws = wb.add_sheet('Sheet')
