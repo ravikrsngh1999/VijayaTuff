@@ -47,7 +47,7 @@
   <button type="button" name="button" id="close-remark">Close</button>
   <div class="remarks">
     <h4>Remarks</h4>
-    <p id="remarks">Here will be the remarks</p>
+    <p id="remarks"></p>
   </div>
 </div>
 
@@ -110,6 +110,7 @@
 
   $("#close-remark").click(function(){
     gsap.to(".remarks-container",{display:"none",duration:0.1})
+    document.getElementById('remarks').innerHTML = ""
   })
 
 </script>
