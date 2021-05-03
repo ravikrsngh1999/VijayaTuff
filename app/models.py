@@ -57,4 +57,4 @@ class Log(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.glass_type + " - " + self.description + " - " + self.size
+        return self.glass_type + " - " + self.description + " - " + self.size + " - " + self.date
