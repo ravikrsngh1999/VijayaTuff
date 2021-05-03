@@ -11,8 +11,9 @@ class Size(models.Model):
 
 
 
+
 class GlassType(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=30)
 
     def __str__(self):
         return self.name
@@ -30,14 +31,30 @@ class Product(models.Model):
 
 
 
+class OffCutProduct(models.Model):
+    glass_type = models.ForeignKey(GlassType,on_delete=models.CASCADE)
+    description = models.CharField(max_length=25)
+    length = models.CharField(max_length=5)
+    breadth = models.CharField(max_length=5)
+    quantity = models.CharField(max_length=5,default="0")
+
+    def __str__(self):
+        return self.glass_type.name + " - " + self.description + " - " + self.length + " X " + self.breadth
+
+
+
 class Log(models.Model):
-    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    glass_type = models.CharField(max_length=30)
+    description = models.CharField(max_length=25)
+    size = models.CharField(max_length=15,default="None")
     initial_quantity = models.CharField(max_length=5)
     in_quantity = models.CharField(max_length=5)
     used_quantity = models.CharField(max_length=5)
     left_quantity = models.CharField(max_length=5)
     date = models.CharField(max_length=15)
+    offcut = models.BooleanField(default=False)
+    remarks = models.CharField(max_length=2500,default="No Remark")
     user = models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.product.glass_type.name + " - " + self.product.description + " - " + self.product.size.length + " X " + self.product.size.breadth
+        return self.product.glass_type + " - " + self.product.description + " - " + self.product.size

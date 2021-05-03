@@ -104,13 +104,14 @@ tr {
   display: flex;
   justify-content: flex-end;
 }
-#view-btn {
+.view-btn {
   font-size: 10px;
   color: #FCA130;
   padding: 6px 20px;
   border: 2.5px solid #FCA130;
   font-family: 'Roboto', sans-serif;
   text-decoration: none;
+  margin-left: 10px;
 }
 #add-btn {
   background: #FCA130;
@@ -129,4 +130,58 @@ tr {
 .log-table td {
   font-size: 10px;
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.remarks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  padding: 0 20px;
+  z-index: 6;
+  background: rgba(0, 0, 0, 0.4);
+}
+.remarks-container button {
+  padding: 5px 15px;
+  background: #FCA130;
+  border-radius: 3px;
+  color: white;
+  border: none;
+  outline: none;
+}
+.remarks-container button:hover {
+  background: #00AECF;
+}
+.remarks {
+  background: white;
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  font-family: 'Roboto', sans-serif;
+}
+.remarks h4 {
+  color:#00AECF;
+  margin-bottom: 10px;
+}
+.remarks p{
+  color:rgba(0, 0, 0, 0.85);
+  font-size: 13px;
 }

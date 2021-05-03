@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2lke3a1%(7+_o2-jo*f2=4p*apose)u89i-(@&8##+^_qo1x4-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['ec2-18-191-189-23.us-east-2.compute.amazonaws.com']
-
+#ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'vijayatuff',
         'USER': 'vijayatuff',
         'PASSWORD': 'vijayatuff',
-        'HOST': 'vijayatuff.cbe5fzal6xqj.us-east-2.rds.amazonaws.com',
+        'HOST': 'vijayatuff1.cbe5fzal6xqj.us-east-2.rds.amazonaws.com',
         'PORT': '5432',
     }
 }

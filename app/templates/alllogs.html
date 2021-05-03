@@ -14,7 +14,7 @@
 </div>
 <table>
   <table class="log-table" id="log-table">
-    <tr>
+    <tr data-catid="header">
       <th>SIZE</th>
       <th>INITIAL</th>
       <th>IN</th>
@@ -23,8 +23,8 @@
       <th>DATE</th>
     </tr>
     {% for i in logs %}
-    <tr>
-      <td>{{i.product.size}}</td>
+    <tr data-catid="{{i.id}}">
+      <td>{{i.size}}</td>
       <td>{{i.initial_quantity}}</td>
       <td>{{i.in_quantity}}</td>
       <td>{{i.used_quantity}}</td>
@@ -37,13 +37,22 @@
   </table>
 </table>
 <div class="export-div">
-  <a href="/Export-Individual/{{type}}/{{desc}}/" id="view-btn">EXPORT</a>
+  <a href="/Product-Details/{{type}}/{{desc}}/" class="view-btn">VIEW DETAILS</a>
+  <a href="/Export-Individual/{{type}}/{{desc}}/" class="view-btn">EXPORT</a>
 </div>
 
 <br><br><br><br>
 
+<div class="remarks-container">
+  <button type="button" name="button" id="close-remark">Close</button>
+  <div class="remarks">
+    <h4>Remarks</h4>
+    <p id="remarks">Here will be the remarks</p>
+  </div>
+</div>
 
 <script type="text/javascript">
+
   $('#search-box').on('input', function() {
     var val = document.getElementById('search-box').value
     var t = "<tr><th>SIZE</th><th>INITIAL</th><th>IN</th><th>USED</th><th>LEFT</th><th>DATE</th></tr>"
@@ -72,6 +81,36 @@
        })
   });
 
+  $('.log-table tr').click(function(){
+    var details = $(this).attr('data-catid')
+
+    $.ajax(
+    {
+      type:"GET",
+      url: "/Get-Remarks",
+      data:{
+            details:details,
+         },
+         success: function( data )
+         {
+           if (data == "Error") {
+             alert("Error fetching data.")
+           } else {
+             console.log(data)
+             document.getElementById('remarks').innerHTML = data
+             }
+           }
+
+         }
+       )
+
+    gsap.to(".remarks-container",{display:"flex"})
+
+  })
+
+  $("#close-remark").click(function(){
+    gsap.to(".remarks-container",{display:"none",duration:0.1})
+  })
 
 </script>
 

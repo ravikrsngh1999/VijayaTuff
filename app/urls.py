@@ -10,6 +10,7 @@ urlpatterns = [
     path('Add-Log/<str:type>/<str:desc>/',views.addlog,name="addlog"),
     path('View-All-Logs/<str:type>/<str:desc>/',views.viewalllogs,name="viewalllogs"),
     path('Get-Quantity/',views.getquantity,name="getquantity"),
+    path('Get-Remarks/',views.getremarks,name="getremarks"),
     path('Search-Logs/',views.searchlogs,name="searchlogs"),
     path('User-Logout/',views.user_logout,name="user_logout"),
 

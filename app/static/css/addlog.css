@@ -55,6 +55,13 @@ form select {
   border: none;
   display: block;
 }
+#remark {
+  width: 100%;
+  padding: 10px 15px;
+  background: #F0F0F0;
+  border: none;
+  display: block;
+}
 form span {
   font-family: 'Roboto', sans-serif;
   color: #F9A132;
@@ -71,4 +78,28 @@ form span {
   font-family: 'Roboto', sans-serif;
   border-radius: 5px;
   float: right;
+}
+
+
+
+
+
+
+.custom-input-container {
+  display: none;
+  grid-template-columns: 46% 8% 46%;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+}
+.custom-input-container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.size-header {
+  display: flex;
+}
+#cust-size {
+  margin-left: auto;
+  color: #0087AB;
 }

@@ -12,16 +12,27 @@
 
 <form class="" method="post" enctype="multipart/form-data" id="log-form">
   {% csrf_token %}
-  <span>Select Size</span>
+  <div class="size-header"><span>Select Size</span> <span id="cust-size">Custom Size?</span> </div>
   <select class="" name="product" id="product-list">
     <option value="None">----</option>
+    {% for i in all_offcut_products %}
+    <option value="{{i.length}},{{i.breadth}},Offcut">{{i.length}} X {{i.breadth}}</option>
+    {% endfor %}
+    <option value="None">----</option>
     {% for i in all_products %}
-    <option value="{{i.size.length}},{{i.size.breadth}}">{{i.size}}</option>
+    <option value="{{i.size.length}},{{i.size.breadth}},Standard">{{i.size}}</option>
     {% endfor %}
   </select>
+  <div class="custom-input-container">
+    <input type="text" name="length" value="" placeholder="Length">
+    <div class="">
+      X
+    </div>
+    <input type="text" name="breadth" value="" placeholder="Breadth">
+  </div>
   <br>
   <span>Initial Quantity</span>
-  <input type="text" name="initial_quantity" placeholder="Initial Quantity" id="initial_quantity" readonly>
+  <input type="text" name="initial_quantity" placeholder="Initial Quantity" id="initial_quantity" value="0" readonly>
   <br>
   <span>In Quantity</span>
   <input type="text" name="in_quantity" value="0" placeholder="In" id="in_quantity" required>
@@ -29,9 +40,13 @@
   <span>Used Quantity</span>
   <input type="text" name="used_quantity" value="0" placeholder="Used" id="used_quantity" required>
   <br>
-  <span>Date</span>
-  <input type="date" name="date" placeholder="Date" autocomplete="on" id="date"  required>
+  <span>Remark</span>
+  <textarea name="remark" rows="8" id="remark"></textarea>
   <br>
+  <span>Date</span>
+  <input type="date" name="date" placeholder="Date"  id="date"  required>
+  <br>
+  <input type="hidden" name="SizeType" value="Normal" id="size-type">
   <button type="button" name="button" id="sub-btn">Add</button>
 </form>
 
@@ -40,7 +55,14 @@
 <br><br><br><br><br><br><br>
 
 <script type="text/javascript">
-  $("#product-list").change(function(){
+
+  function setdate() {
+    document.getElementById('date').valueAsDate = new Date();
+  }
+  setdate()
+
+
+  function getquantity(){
     var p = document.getElementById('product-list').value
     var type = "{{type}}"
     var desc = "{{desc}}"
@@ -64,17 +86,48 @@
 
          }
        })
-  })
+  }
+
+
+  $("#product-list").change(getquantity)
 
 
   $("#sub-btn").click(function(){
     var p = document.getElementById('product-list').value
-    if (p == "None") {
+    if (p == "None" && document.getElementById('size-type').value == "Normal" ) {
       alert("Select appropriate size")
       return ;
     }
     $("#log-form").submit()
   })
+
+
+
+</script>
+
+<script type="text/javascript">
+
+  $("#cust-size").click(function(){
+    var x = document.getElementById('cust-size').innerHTML
+    if (x.includes('Custom')) {
+      gsap.to("#product-list",{display:"none",duration:0})
+      gsap.to(".custom-input-container",{display:"grid",duration:0.5})
+      document.getElementById('cust-size').innerHTML = "Close"
+      document.getElementById('size-type').value = "Custom"
+      document.getElementById('initial_quantity').value = "0"
+      document.getElementById("used_quantity").readOnly = true;
+    } else {
+      gsap.to("#product-list",{display:"block",duration:0.5})
+      gsap.to(".custom-input-container",{display:"none",duration:0})
+      document.getElementById('cust-size').innerHTML = "Custom Size?"
+      document.getElementById('size-type').value = "Normal"
+      document.getElementById("used_quantity").readOnly = false;
+      getquantity()
+    }
+
+  })
+
+
 
 </script>
 

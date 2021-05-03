@@ -21,6 +21,12 @@
       <th>SIZE</th>
       <th>QUANTITY</th>
     </tr>
+    {% for i in all_offcut_products %}
+    <tr>
+      <td>{{i.length}} X {{i.breadth}}</td>
+      <td>{{i.quantity}}</td>
+    </tr>
+    {% endfor %}
     {% for i in all_products %}
     <tr>
       <td>{{i.size}}</td>
@@ -32,7 +38,7 @@
 
 <div class="log-header">
   <span class="ava-head g-left">Logs</span>
-  <a href="/View-All-Logs/{{type}}/{{desc}}/" class="" id="view-btn">VIEW ALL</a>
+  <a href="/View-All-Logs/{{type}}/{{desc}}/" class="view-btn">VIEW ALL</a>
   <a href="/Add-Log/{{type}}/{{desc}}/" class="" id="add-btn"> <img src="{% static 'img/Group 11.png' %}" alt=""> </a>
 </div>
 <table>
@@ -47,7 +53,7 @@
     </tr>
     {% for i in logs %}
     <tr>
-      <td>{{i.product.size}}</td>
+      <td>{{i.size}}</td>
       <td>{{i.initial_quantity}}</td>
       <td>{{i.in_quantity}}</td>
       <td>{{i.used_quantity}}</td>
