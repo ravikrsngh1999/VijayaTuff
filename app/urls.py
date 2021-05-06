@@ -12,6 +12,7 @@ urlpatterns = [
     path('Get-Quantity/',views.getquantity,name="getquantity"),
     path('Get-Remarks/',views.getremarks,name="getremarks"),
     path('Search-Logs/',views.searchlogs,name="searchlogs"),
+    path('Search-Product/',views.searchproduct,name="searchproduct"),
     path('User-Logout/',views.user_logout,name="user_logout"),
 
     path('Export-Individual/<str:type>/<str:desc>/',views.exportindividual,name="exportindividual"),

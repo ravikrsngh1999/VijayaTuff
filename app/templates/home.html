@@ -4,8 +4,15 @@
 
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 
+
+
 <div class="section-1">
   <h2>Your <br>Glass Types</h2>
+
+  <input type="search" name="" value="" placeholder="Search any product" id="search-box">
+  <div  id="search-results">
+
+  </div>
 
   {% for i in all_glass_type %}
   <div class="card">
@@ -66,6 +73,42 @@
     }
 
   })
+
+
+  $('#search-box').on('input', function() {
+    var val = document.getElementById('search-box').value
+    if (val == "") {
+      val = "vsjavbis"
+    }
+    var t = document.getElementById('search-results').innerHTML
+    $.ajax(
+    {
+      type:"GET",
+      url: "/Search-Product",
+      data:{
+            val:val,
+         },
+         success: function( data )
+         {
+           if (data == "Error") {
+             alert("Error fetching data.")
+           } else {
+             console.log(data.length)
+             var x = ""
+             for (var i = 0; i < data.length; i++) {
+               x = x + "<div class=\"list\"><h4>"+ data[i][0]+ " - "+data[i][1] +"</h4><a href=\"/Product-Details/"+data[i][0]+"/"+data[i][1]+"/\" class=\"g-right\">VIEW</a></div>"
+               document.getElementById('search-results').innerHTML = x
+             }
+             if (data.length == 0) {
+               document.getElementById('search-results').innerHTML = ""
+             }
+           }
+
+         }
+       })
+  });
+
+
 
 </script>
 

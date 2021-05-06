@@ -96,26 +96,50 @@ header img {
   overflow: hidden;
   height: 0;
 }
-.card-body .list {
+ .list {
   padding: 12px 20px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #20B8D6;
 }
-.card-body .list h4 {
+ .list h4 {
   color: #545454;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 16px;
 }
-.card-body .list a {
+ .list a {
   text-decoration: none;
   color: white;
   font-size: 12px;
-  padding: 7px 25px;
+  padding: 8px 25px;
   background: #20B8D6;
   font-family: 'Roboto', sans-serif;
 }
+
+
+#search-results .list {
+  padding: 8px 15px;
+}
+#search-results .list h4 {
+  font-size: 12px;
+}
+#search-results .list a {
+  font-size: 8px;
+  padding: 5px 20px;
+}
+
+#search-results {
+  margin-bottom: 20px;
+}
+.section-1 input {
+  width: 100%;
+  padding: 7px 15px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-bottom: 15px;
+}
+
 
 footer {
   width: 100%;

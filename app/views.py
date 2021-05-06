@@ -345,3 +345,18 @@ def exportstocklist(request):
         wb.save(response)
         return response
     return HttpResponseRedirect(reverse('app:index'))
+
+
+
+
+def searchproduct(request):
+    val = request.GET['val']
+    lookups = Q(description__icontains=val) | Q(description__startswith=val)
+    all = Product.objects.all().filter(lookups).order_by('glass_type__name').values('glass_type__name','description').distinct()
+    f = []
+    for i in all:
+        l=[]
+        l.append(i['glass_type__name'])
+        l.append(i['description'])
+        f.append(l)
+    return JsonResponse(f,safe=False)

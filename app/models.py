@@ -45,7 +45,7 @@ class OffCutProduct(models.Model):
 
 class Log(models.Model):
     glass_type = models.CharField(max_length=30)
-    description = models.CharField(max_length=25)
+    description = models.CharField(max_length=50)
     size = models.CharField(max_length=15,default="None")
     initial_quantity = models.CharField(max_length=5)
     in_quantity = models.CharField(max_length=5)
@@ -53,7 +53,7 @@ class Log(models.Model):
     left_quantity = models.CharField(max_length=5)
     date = models.CharField(max_length=15)
     offcut = models.BooleanField(default=False)
-    remarks = models.CharField(max_length=2500,default="No Remark")
+    remarks = models.CharField(max_length=150,default="No Remark")
     user = models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self):
